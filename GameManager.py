@@ -3,6 +3,7 @@ import time
 import random
 from settings import settings
 from plane import Plane
+from text import Text
 
 class GameManager:
     def __init__(self):
@@ -12,6 +13,8 @@ class GameManager:
         self.plane = Plane(self.WIN)
         self.plane_still = True
         self.clock = pygame.time.Clock()
+        self.start_time = time.time()
+        self.text = Text(self.WIN)
 
     def run(self):
         self.clock.tick(60)
@@ -20,6 +23,7 @@ class GameManager:
     def Event_Handling(self):
         self.running = True
         while self.running:
+            self.elapsed_time = time.time() - self.start_time
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
@@ -45,6 +49,7 @@ class GameManager:
 
     def render_game(self):
         self.plane.draw_plane()
+        self.text.update(self.elapsed_time)
         pygame.display.update()
 
 def main():

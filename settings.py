@@ -7,5 +7,9 @@ class settings:
 
         #plane settings
         self.plane_speed = 0.8
+
+        #Text settings
+        text_size = 30
+        text_font = "comicsans"
         
 
