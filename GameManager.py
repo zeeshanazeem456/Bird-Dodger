@@ -6,6 +6,9 @@ from plane import Plane
 from text import Text
 from Eagle import bird
 
+pygame.init()
+pygame.mixer.init()
+
 class GameManager:
     def __init__(self):
         self.Settings = settings()
@@ -18,6 +21,13 @@ class GameManager:
         self.text = Text(self.WIN)
         self.birds = []
         self.hit_count = 0
+        #pygame.mixer.music.load("assets/music/background.mp3")
+        #pygame.mixer.music.play(-1)
+        self.plane_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\plane_sound.mp3")
+        self.plane_sound.play(-1)
+        self.plane_sound.set_volume(0.4) 
+        self.Bird_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\bird_sound.mp3")
+        self.crash_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\crash_sound.mp3")
 
     def run(self):
         dt = self.clock.tick(60)
@@ -27,6 +37,7 @@ class GameManager:
                 bird_x = random.randint(0,self.Settings.WIDTH - self.bird.width)
                 self.Bird = bird(self.WIN,bird_x)
                 self.birds.append(self.bird)
+                self.Bird_sound.play()
 
             self.Settings.bird_add_increment = max(200,self.bird_add_increment-50)
             self.Settings.bird_count = 0
@@ -82,6 +93,7 @@ class GameManager:
             elif bird_x.rect.y >= self.plane.rect.y and bird_x.rect.colliderect(self.plane):
                 self.birds.remove(bird_x)
                 self.hit_count +=1
+                self.crash_sound.play()
                 break
         if self.hit_count > 3:
             self.text.update_lose()
