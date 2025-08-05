@@ -15,3 +15,7 @@ class Text:
     def update_lose(self):
         self.lose_text = self.FONT.render("You Lost!",1,"red")
         self.screen.blit(self.lose_text,(self.Settings.WIDTH/2 - self.lose_text.get_width()/2,self.Settings.HEIGHT/2 - self.lose_text.get_height()))
+
+    def update_score(self,score):
+        self.score_text = self.FONT.render(f"Score: {round(score)}",1,"red")
+        self.screen.blit(self.score_text,(self.Settings.WIDTH - self.score_text.get_width(),10))

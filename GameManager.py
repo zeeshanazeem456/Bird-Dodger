@@ -5,6 +5,7 @@ from settings import settings
 from plane import Plane
 from text import Text
 from Eagle import bird
+from button import button
 
 pygame.init()
 pygame.mixer.init()
@@ -21,12 +22,15 @@ class GameManager:
         self.text = Text(self.WIN)
         self.birds = []
         self.hit_count = 0
-        #pygame.mixer.music.load("assets/music/background.mp3")
-        #pygame.mixer.music.play(-1)
+        self.score = 0
         self.plane_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\plane_sound.mp3")
         self.plane_sound.play(-1)
         self.plane_sound.set_volume(0.4) 
-        self.Bird_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\bird_sound.mp3")
+        self.Bird_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\birds.wav")
+        self.Bird_sound.play(-1)
+        self.time_cap = 0
+        self.flag_time = 2
+        #self.Button = button()
         self.crash_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\crash_sound.mp3")
 
     def run(self):
@@ -37,7 +41,6 @@ class GameManager:
                 bird_x = random.randint(0,self.Settings.WIDTH - self.bird.width)
                 self.Bird = bird(self.WIN,bird_x)
                 self.birds.append(self.bird)
-                self.Bird_sound.play()
 
             self.Settings.bird_add_increment = max(200,self.bird_add_increment-50)
             self.Settings.bird_count = 0
@@ -51,7 +54,11 @@ class GameManager:
                 break
             self.clock.tick(60)  # Moved from run()
             self.elapsed_time = time.time() - self.start_time
+            self.time_cap = int(self.elapsed_time)
             self.Settings.bird_count += 60  # Approximation since tick(60)
+            if self.time_cap > self.flag_time:
+                self.flag_time += 4
+                self.score += 25
 
             if self.Settings.bird_count > self.Settings.bird_add_increment:
                 for _ in range(1):
@@ -102,6 +109,7 @@ class GameManager:
             bird_x.draw()
 
         self.text.update(self.elapsed_time)
+        self.text.update_score(self.score)
         pygame.display.update()
         if self.hit_count > 3:
             pygame.time.delay(4000)
