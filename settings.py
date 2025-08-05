@@ -6,7 +6,7 @@ class settings:
         self.WIDTH = 800
 
         #plane settings
-        self.plane_speed = 2
+        self.plane_speed = 6
 
         #Text settings
         self.text_size = 30
@@ -16,5 +16,10 @@ class settings:
         self.bird_velocity = 1
         self.bird_count = 0
         self.bird_add_increment = 5000
+
+        #leaderboard Settings
+        self.leaderboard_file = "leaderboard.txt"
+        self.max_entries = 10
+        self.name = ""
         
 
