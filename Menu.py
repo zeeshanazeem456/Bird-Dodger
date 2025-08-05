@@ -28,8 +28,11 @@ class MainMenu:
         quit()
 
     def draw(self):
-        self.screen.fill((135, 206, 235))  
+        self.image_bg = pygame.image.load(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\menuImage.png")
+        self.image_bg = pygame.transform.scale(self.image_bg, (800, 590))
         title_text = self.font.render("Space Dodger", True, (255, 5, 255))  
+        self.bg_rect = self.image_bg.get_rect()
+        self.screen.blit(self.image_bg, self.bg_rect)
         self.screen.blit(title_text, (self.screen.get_width() // 2 - title_text.get_width() // 2, 100))
 
         self.start_button.draw()
@@ -76,7 +79,7 @@ class MainMenu:
                 if event.type == pygame.QUIT:
                     self.quit_game()
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN :
+                    if event.key == pygame.K_RETURN and self.name.strip('`') != "" :
                         return self.name.strip()
                     elif event.key == pygame.K_BACKSPACE:
                         self.name = self.name[:-1]

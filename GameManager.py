@@ -27,6 +27,7 @@ class GameManager:
         self.score = 0
         self.Bird_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\birds.wav")
         self.Bird_sound.play(-1)
+        self.bg_music = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\music.mp3")
         self.time_cap = 0
         self.flag_time = 2
         self.menu = MainMenu(self.WIN)
@@ -38,6 +39,7 @@ class GameManager:
 
     def run(self):
         dt = self.clock.tick(60)
+        self.bg_music.play(-1)
         self.Settings.bird_count += dt
         if self.Settings.bird_count > self.Settings.bird_add_increment:
             for _ in range(3):
@@ -115,9 +117,12 @@ class GameManager:
         self.text.update_score(self.score)
         pygame.display.update()
         if self.hit_count > 3:
-            pygame.time.delay(4000)
+            self.WIN.fill((135, 206, 235)) 
             k = self.menu.get_name()
+            self.text.update_lose()
             self.menu.update_leaderboard(k,self.score)
+            pygame.display.update()
+            pygame.time.delay(4000)
 
 
 def main():

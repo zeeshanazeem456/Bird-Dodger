@@ -1,5 +1,7 @@
+Zeeshan,375
 DD,200
 Zeeshan,100
+sfd,100
 Zeeshan,92
 Zeeshan,92
 See,75
@@ -7,6 +9,12 @@ Sufi,75
 He,75
 Zeeshan,75
 ~,75
+fsd,75
+ads,75
+dsf,75
+sf,75
+sfd,75
+cs,75
 Shaista,49
 FAizan,30
 Zeeshan,1
