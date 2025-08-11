@@ -45,9 +45,10 @@ class GameManager:
             for _ in range(3):
                 bird_x = random.randint(0,self.Settings.WIDTH - 64)
                 Bird = bird(self.WIN,bird_x)
-                self.birds.append(bird)
+                self.birds.append(Bird)
 
-            self.Settings.bird_add_increment = max(200,self.bird_add_increment-50)
+            #self.Settings.bird_add_increment = max(200,self.bird_add_increment-50)
+            self.bird_add_increment = 1000
             self.Settings.bird_count = 0
 
         self.Event_Handling()
@@ -67,7 +68,7 @@ class GameManager:
 
             if self.Settings.bird_count > self.Settings.bird_add_increment:
                 for _ in range(1):
-                    bird_x = random.randint(0, self.Settings.WIDTH - 64)  # 64 = bird width estimate
+                    bird_x = random.randint(0, self.Settings.WIDTH - 64)
                     new_bird = bird(self.WIN, bird_x)
                     self.birds.append(new_bird)
                 self.Settings.bird_count = 0
@@ -76,6 +77,8 @@ class GameManager:
                 if event.type == pygame.QUIT:
                     self.running = False
                     break
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_h:
+                    self.plane.hit_flag = not self.plane.hit_flag
 
             keys = pygame.key.get_pressed()
             self.plane_still = True
@@ -92,8 +95,8 @@ class GameManager:
 
     def position(self):
             self.WIN.fill((135, 206, 235)) 
-            for bird_x in self.birds[:]:
-                bird_x.update()
+            for bird_obj in self.birds[:]:
+                bird_obj.update()
             self.render_game()
 
     def render_game(self):
@@ -102,7 +105,7 @@ class GameManager:
             bird_x.draw()
             if bird_x.rect.y > self.Settings.HEIGHT:
                 self.birds.remove(bird_x)
-            elif bird_x.rect.y >= self.plane.rect.y and bird_x.rect.colliderect(self.plane):
+            elif bird_x.rect.y >= self.plane.rect.y and  bird_x.rect.colliderect(self.plane.hitbox_body) or bird_x.rect.colliderect(self.plane.hitbox_wings):
                 self.birds.remove(bird_x)
                 self.hit_count +=1
                 self.crash_sound.play()

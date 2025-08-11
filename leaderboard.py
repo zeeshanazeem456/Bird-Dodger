@@ -14,6 +14,7 @@ class Leaderboard:
             pass 
 
     def add_entry(self, name, score):
+        return
         self.entries.append((name, score))
         self.entries.sort(key=lambda x: x[1], reverse=True)
         self.save()

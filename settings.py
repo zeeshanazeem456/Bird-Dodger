@@ -15,7 +15,7 @@ class settings:
         #Bird Settings
         self.bird_velocity = 1
         self.bird_count = 0
-        self.bird_add_increment = 5000
+        self.bird_add_increment = 3000
 
         #leaderboard Settings
         self.leaderboard_file = "leaderboard.txt"

@@ -30,7 +30,7 @@ class MainMenu:
     def draw(self):
         self.image_bg = pygame.image.load(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\menuImage.png")
         self.image_bg = pygame.transform.scale(self.image_bg, (800, 590))
-        title_text = self.font.render("Space Dodger", True, (255, 5, 255))  
+        title_text = self.font.render("Bird Dodger", True, (255, 5, 255))  
         self.bg_rect = self.image_bg.get_rect()
         self.screen.blit(self.image_bg, self.bg_rect)
         self.screen.blit(title_text, (self.screen.get_width() // 2 - title_text.get_width() // 2, 100))
@@ -68,37 +68,37 @@ class MainMenu:
                     
 
     def prompt_name(self):
-        self.name = ""
+        self.name = ""  
         font = pygame.font.SysFont('Arial', 36)
-        input_box = pygame.Rect(100, 300, 600, 50)
+        input_box = pygame.Rect(100, 300, 600, 50) 
         color = pygame.Color('lightskyblue3')
-        active = True
+        active = True 
 
         while active:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    self.quit_game()
+                    self.quit_game()  
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN and self.name.strip('`') != "" :
-                        return self.name.strip()
+                    if event.key == pygame.K_RETURN and self.name.strip() != "":
+                        return self.name.strip() 
                     elif event.key == pygame.K_BACKSPACE:
-                        self.name = self.name[:-1]
-                    else:
-                        if len(self.name) < 90 and event.unicode.isprintable():
-                            self.name += event.unicode
+                        self.name = self.name[:-1] 
+                    elif event.unicode.isprintable() and len(self.name) < 90:
+                        self.name += event.unicode 
 
-
-            self.screen.fill((135, 206, 235))
+            
+            self.screen.fill((135, 206, 235)) 
             full_text = "Enter Your Name: " + self.name
             max_width = input_box.width - 10
+
             while font.size(full_text)[0] > max_width:
                 self.name = self.name[:-1]
                 full_text = "Enter Your Name: " + self.name
-            text_surface = font.render(full_text, True, (30, 30, 30))
-            self.screen.blit(text_surface, (input_box.x + 5, input_box.y + 5))
-            pygame.draw.rect(self.screen, color, input_box, 2)
-            pygame.display.flip()
 
+            text_surface = font.render(full_text, True, (30, 30, 30))
+            self.screen.blit(text_surface, (input_box.x + 5, input_box.y + 5))  
+            pygame.draw.rect(self.screen, color, input_box, 2) 
+            pygame.display.flip()  
 
     def update_leaderboard(self,name,score):
         self.leaderboard.add_entry(name, score)
