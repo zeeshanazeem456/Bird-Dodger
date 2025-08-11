@@ -25,17 +25,17 @@ class GameManager:
         self.birds = []
         self.hit_count = 0
         self.score = 0
-        self.Bird_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\birds.wav")
+        self.Bird_sound = pygame.mixer.Sound("sounds/birds.wav")
         self.Bird_sound.play(-1)
-        self.bg_music = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\music.mp3")
+        self.bg_music = pygame.mixer.Sound("sounds\music.mp3")
         self.time_cap = 0
         self.flag_time = 2
         self.menu = MainMenu(self.WIN)
         self.menu.run()
-        self.plane_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\plane_sound.mp3")
+        self.plane_sound = pygame.mixer.Sound("sounds\plane_sound.mp3")
         self.plane_sound.play(-1)
         self.plane_sound.set_volume(0.4) 
-        self.crash_sound = pygame.mixer.Sound(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\sounds\crash_sound.mp3")
+        self.crash_sound = pygame.mixer.Sound("sounds\crash_sound.mp3")
 
     def run(self):
         dt = self.clock.tick(60)
@@ -89,7 +89,7 @@ class GameManager:
                 self.plane_still = False
                 self.plane.move_right()
             if self.plane_still:
-                self.plane.change_image(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\plane_sprites\plane_straight.png")
+                self.plane.change_image("plane_sprites\plane_straight.png")
 
             self.position()
 

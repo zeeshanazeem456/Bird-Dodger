@@ -28,7 +28,7 @@ class MainMenu:
         quit()
 
     def draw(self):
-        self.image_bg = pygame.image.load(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\menuImage.png")
+        self.image_bg = pygame.image.load("menuImage.png")
         self.image_bg = pygame.transform.scale(self.image_bg, (800, 590))
         title_text = self.font.render("Bird Dodger", True, (255, 5, 255))  
         self.bg_rect = self.image_bg.get_rect()
@@ -111,7 +111,7 @@ class MainMenu:
         font = pygame.font.SysFont(None, 48)
         small_font = pygame.font.SysFont(None, 36)
 
-        title = font.render("🏆 Leaderboard 🏆", True, (0,0,0))
+        title = font.render("<== Leaderboard ==>", True, (0,0,0))
         screen.blit(title, (screen.get_width() // 2 - title.get_width() // 2, 50))
 
         entries = self.leaderboard.get_leaderboard()

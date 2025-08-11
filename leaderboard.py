@@ -1,5 +1,5 @@
 class Leaderboard:
-    def __init__(self, filename=r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\leaderboard.txt"):
+    def __init__(self, filename="leaderboard.txt"):
         self.filename = filename
         self.entries = []
         self.load()
@@ -14,7 +14,6 @@ class Leaderboard:
             pass 
 
     def add_entry(self, name, score):
-        return
         self.entries.append((name, score))
         self.entries.sort(key=lambda x: x[1], reverse=True)
         self.save()

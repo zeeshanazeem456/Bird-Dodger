@@ -4,18 +4,18 @@ class Plane:
     def __init__(self, WIN):
         self.Settings = settings()
         self.screen = WIN
-        self.image = pygame.image.load(r"C:\Users\4STAR\Downloads\Zeeshan's Stuff\Space_Dodger\plane_sprites\plane_straight.png")
+        self.image = pygame.image.load("plane_sprites\plane_straight.png")
         self.rect = self.image.get_rect()
         self.rect.center = (200, self.Settings.HEIGHT - self.rect.height / 2)
 
-        self.hitbox_body = pygame.Rect(0, 0, self.rect.width // 3, self.rect.height)    
-        self.hitbox_wings = pygame.Rect(0, 0, self.rect.width, self.rect.height // 3)
+        self.hitbox_body = pygame.Rect(0, 0, self.rect.width // 3, self.rect.height * 0.7)    
+        self.hitbox_wings = pygame.Rect(0, 0, self.rect.width * 0.9, self.rect.height // 4)
         self.hit_flag = False    
         self.update_hitboxes()
 
     def update_hitboxes(self):
         self.hitbox_body.center = self.rect.center
-        self.hitbox_wings.center = self.rect.center
+        self.hitbox_wings.center = self.rect.center 
 
     def change_image(self, new_image_path):
         old_center = self.rect.center
